@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateActivity">
+
+    <EditText
+        android:id="@+id/ndiscription"
+        android:layout_width="284dp"
+        android:layout_height="321dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="144dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:fontFamily="@font/aclonica"
+        android:gravity="top"
+        android:hint="Enter Notice Here"
+        android:inputType="textMultiLine"
+        android:maxLines="100"
+        android:shadowColor="#0B0000"
+        android:textColor="#121111"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/ntitle"
+        android:layout_width="284dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="52dp"
+
+        android:ems="10"
+        android:fontFamily="@font/aclonica"
+        android:hint="Enter Notice Title"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/ndiscription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/upload"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:fontFamily="@font/aclonica"
+        android:text="Upload"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/aclonica"
+        android:text="No File Selected"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ndiscription" />
+
+    <Button
+        android:id="@+id/selectfile"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:fontFamily="@font/aclonica"
+        android:text="Select File"
+        app:layout_constraintBottom_toTopOf="@+id/upload"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notification"
+        app:layout_constraintVertical_bias="0.341" />
+
+    <TextView
+        android:id="@+id/tvdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/aclonica"
+        android:text="Date"
+        app:layout_constraintBottom_toTopOf="@+id/upload"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectfile" />
+
+    <Spinner
+        android:id="@+id/dspinner"
+        android:layout_width="284dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

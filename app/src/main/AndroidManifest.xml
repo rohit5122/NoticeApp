@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.noticeapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.NoticeApp">
+        <activity android:name=".GTUActivity"></activity>
+        <activity android:name=".LibraryActivity" />
+        <activity android:name=".GroupActivity" />
+        <activity android:name=".GeneralNoticeActivity" />
+        <activity android:name=".CddmNoticeActivity" />
+        <activity android:name=".ElecNoticeActivity" />
+        <activity android:name=".EcNoticeActivity" />
+        <activity android:name=".MechNoticeActivity" />
+        <activity android:name=".CivilNoticeActivity" />
+        <activity android:name=".DepartmentActivity" />
+        <activity android:name=".FetchActivity" />
+        <activity android:name=".CreateActivity" />
+        <activity android:name=".ComputerNoticeActivity" />
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>

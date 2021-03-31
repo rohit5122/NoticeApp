@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">NoticeApp</string>
+    <string name="todo">TODO</string>
+    <string name="title">Title</string>
+    <string name="date">Date</string>
+    <string name="descreaption">Descreaption</string>
+    <string name="select_department">Select Department</string>
+    <string name="computer">Computer</string>
+
+    <string name="mechanical">mechanical</string>
+    <string name="c_d_d_m">C.D.D.M</string>
+
+    <string-array name="Departments">
+        <item>Select Department</item>
+        <item>Computer</item>
+        <item>EC</item>
+        <item>Electrical</item>
+        <item>Mechanical</item>
+        <item>Civil</item>
+        <item>CDDM</item>
+        <item>General</item>
+    </string-array>
+    <string-array name="Type">
+        <item>Select Notice Type</item>
+        <item>Computer</item>
+        <item>EC</item>
+        <item>Electrical</item>
+        <item>Mechanical</item>
+        <item>Civil</item>
+        <item>CDDM</item>
+        <item>General</item>
+        <item>GTU</item>
+        <item>Library</item>
+    </string-array>
+</resources>
