@@ -110,12 +110,12 @@ public class LoginActivity extends AppCompatActivity {
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(LoginActivity.this, "Reset Link Is Sent to Your Email", Toast.LENGTH_SHORT).show();
                             }
-                        })/*.addOnFailureListener(new OnFailureListener() {
+                        }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 Toast.makeText(LoginActivity.this, "Error ! Reset link is not Sent" + e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
-                        })*/;
+                        });
 
 
                     }

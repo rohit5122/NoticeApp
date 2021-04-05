@@ -6,6 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".CreateActivity">
 
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer"
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+        android:elevation="100dp"
+        tools:openDrawer="start">
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navmenu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:background="@android:color/white"
+
+            android:elevation="16dp"
+            app:headerLayout="@layout/navheader"
+            app:menu="@menu/iconmenu" />
+
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
     <EditText
         android:id="@+id/ndiscription"
         android:layout_width="284dp"
@@ -88,10 +110,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/selectfile" />
 
-    <Spinner
+    <TextView
+        android:text="Department"
         android:id="@+id/dspinner"
-        android:layout_width="284dp"
-        android:layout_height="43dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"

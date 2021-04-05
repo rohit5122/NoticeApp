@@ -25,8 +25,12 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -47,12 +51,13 @@ public class CreateActivity extends AppCompatActivity {
     FirebaseStorage fStorage;
     FirebaseFirestore fStore;
     ProgressDialog progressDialog;
-    Spinner dspinner;
+    TextView dspinner;
+    FirebaseAuth fAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+       // getSupportActionBar().hide();
         setContentView(R.layout.activity_create);
 
         title = findViewById(R.id.ntitle);
@@ -64,15 +69,29 @@ public class CreateActivity extends AppCompatActivity {
         dspinner = findViewById(R.id.dspinner);
         fStore = FirebaseFirestore.getInstance();
         fStorage = FirebaseStorage.getInstance();
+        fAuth = FirebaseAuth.getInstance();
 
         Calendar calendar = Calendar.getInstance();
         String currentDate = DateFormat.getDateInstance(DateFormat.LONG).format(calendar.getTime());
         tvdate.setText(currentDate);
 
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(CreateActivity.this,
+      /*  ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(CreateActivity.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.Type) );
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dspinner.setAdapter(myAdapter);
+        dspinner.setAdapter(myAdapter);*/
+
+        String userId;
+        userId = fAuth.getCurrentUser().getUid();
+
+        DocumentReference documentReference = fStore.collection("Users").document(userId);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+
+                dspinner.setText(value.getString("Department"));
+
+            }
+        });
 
 
 
@@ -102,10 +121,10 @@ public class CreateActivity extends AppCompatActivity {
                 String Nttitle = title.getText().toString();
                 String ntdis = discription.getText().toString();
 
-                  String url = pdfUri.getPath();
+                  String url = pdfUri.toString();
              //  String url = notification.getText().toString();
                 String date = tvdate.getText().toString();
-                String ndept = dspinner.getSelectedItem().toString();
+                String ndept = dspinner.getText().toString();
 
 
 

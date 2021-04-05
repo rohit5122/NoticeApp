@@ -65,10 +65,10 @@ public class SignupActivity extends AppCompatActivity {
             myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             Mdepartment.setAdapter(myAdapter);
 
-       /*  if (fAuth.getCurrentUser() != null){
+         if (fAuth.getCurrentUser() != null){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
             finish();
-        }*/
+        }
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +118,25 @@ public class SignupActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             //send Varification Email
+                            userId = fAuth.getCurrentUser().getUid();
+                            DocumentReference documentReference = fStore.collection("Users").document(userId);
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("Fname", name);
+                            user.put("MobileNo", num);
+                            user.put("Email", email);
+                            user.put("Department", dept);
+                            user.put("Password", password);
+                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d(TAG, "OnSuccess : user profile is Created For" + userId);
+                                }
+                            });
+                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+
+
+                            Toast.makeText(SignupActivity.this, "User Created.", Toast.LENGTH_SHORT).show();
+
 
                             FirebaseUser fuser = fAuth.getCurrentUser();
                             fuser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -134,126 +153,7 @@ public class SignupActivity extends AppCompatActivity {
                             });
 
 
-                            Toast.makeText(SignupActivity.this, "User Created.", Toast.LENGTH_SHORT).show();
-                            if (dept.equals("Computer")) {
-                                userId = fAuth.getCurrentUser().getUid();
-                                DocumentReference documentReference = fStore.collection("Computer").document(userId);
-                                Map<String, Object> user = new HashMap<>();
-                                user.put("Fname", name);
-                                user.put("MobileNo", num);
-                                user.put("Email", email);
-                                user.put("Department", dept);
-                                user.put("Password", password);
-                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.d(TAG, "OnSuccess : user profile is Created For" + userId);
-                                    }
-                                });
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            }
-                            if(dept.equals("EC")){
-                                userId = fAuth.getCurrentUser().getUid();
-                                DocumentReference documentReference = fStore.collection("EC").document(userId);
-                                Map<String, Object> user = new HashMap<>();
-                                user.put("Fname", name);
-                                user.put("MobileNo", num);
-                                user.put("Email", email);
-                                user.put("Department", dept);
-                                user.put("Password", password);
-                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.d(TAG, "OnSuccess : user profile is Created For" + userId);
-                                    }
-                                });
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            } 
-                            if(dept.equals("Electrical")){
-                                userId = fAuth.getCurrentUser().getUid();
-                                DocumentReference documentReference = fStore.collection("Electrical").document(userId);
-                                Map<String, Object> user = new HashMap<>();
-                                user.put("Fname", name);
-                                user.put("MobileNo", num);
-                                user.put("Email", email);
-                                user.put("Department", dept);
-                                user.put("Password", password);
-                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.d(TAG, "OnSuccess : user profile is Created For" + userId);
-                                    }
-                                });
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            }
-                            if(dept.equals("Mechanical")){
-                                userId = fAuth.getCurrentUser().getUid();
-                                DocumentReference documentReference = fStore.collection("Mechanical").document(userId);
-                                Map<String, Object> user = new HashMap<>();
-                                user.put("Fname", name);
-                                user.put("MobileNo", num);
-                                user.put("Email", email);
-                                user.put("Department", dept);
-                                user.put("Password", password);
-                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.d(TAG, "OnSuccess : user profile is Created For" + userId);
-                                    }
-                                });
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            }
-                            if(dept.equals("Civil")){
-                                userId = fAuth.getCurrentUser().getUid();
-                                DocumentReference documentReference = fStore.collection("Civil").document(userId);
-                                Map<String, Object> user = new HashMap<>();
-                                user.put("Fname", name);
-                                user.put("MobileNo", num);
-                                user.put("Email", email);
-                                user.put("Department", dept);
-                                user.put("Password", password);
-                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.d(TAG, "OnSuccess : user profile is Created For" + userId);
-                                    }
-                                });
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            }
-                            if(dept.equals("CDDM")){
-                                userId = fAuth.getCurrentUser().getUid();
-                                DocumentReference documentReference = fStore.collection("CDDM").document(userId);
-                                Map<String, Object> user = new HashMap<>();
-                                user.put("Fname", name);
-                                user.put("MobileNo", num);
-                                user.put("Email", email);
-                                user.put("Department", dept);
-                                user.put("Password", password);
-                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.d(TAG, "OnSuccess : user profile is Created For" + userId);
-                                    }
-                                });
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            }
-                            if(dept.equals("General")){
-                                userId = fAuth.getCurrentUser().getUid();
-                                DocumentReference documentReference = fStore.collection("General").document(userId);
-                                Map<String, Object> user = new HashMap<>();
-                                user.put("Fname", name);
-                                user.put("MobileNo", num);
-                                user.put("Email", email);
-                                user.put("Department", dept);
-                                user.put("Password", password);
-                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.d(TAG, "OnSuccess : user profile is Created For" + userId);
-                                    }
-                                });
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            }
+
                             if(dept.equals("Select Department")){
                                 Toast.makeText(SignupActivity.this, "Please select department", Toast.LENGTH_SHORT).show();
                                 pbar.setVisibility(View.GONE);
