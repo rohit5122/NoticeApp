@@ -77,21 +77,26 @@ public class CreateActivity extends AppCompatActivity {
 
       /*  ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(CreateActivity.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.Type) );
-        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        myAdap ter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dspinner.setAdapter(myAdapter);*/
 
         String userId;
         userId = fAuth.getCurrentUser().getUid();
-
         DocumentReference documentReference = fStore.collection("Users").document(userId);
-        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+        if(userId == null) {
+            dspinner.setVisibility(View.INVISIBLE);
 
-                dspinner.setText(value.getString("Department"));
+        }
+        else {
+            documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
 
-            }
-        });
+                    dspinner.setText(value.getString("Department"));
+
+                }
+            });
+        }
 
 
 

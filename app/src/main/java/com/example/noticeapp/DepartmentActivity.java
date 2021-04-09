@@ -30,6 +30,8 @@ public class DepartmentActivity extends BaseActivity  {
         View view = inflater.inflate(R.layout.activity_base,null,false);
         drawerLayout.addView(view,0);
 
+     //   LayoutInflater = LayoutInflater.from(parent.getContext()).inflate(R.layout.noticelist,parent,false);
+
         computer = findViewById(R.id.tvcom);
         ec = findViewById(R.id.tvec);
         elec = findViewById(R.id.tvelec);

@@ -17,6 +17,7 @@ import com.google.android.gms.auth.api.signin.SignInAccount;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -47,6 +48,7 @@ public class ComputerNoticeActivity extends BaseActivity {
         drawerLayout.addView(view,0);
 
         recView = findViewById(R.id.recyclerview);
+        create = findViewById(R.id.fbutton);
         fstore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
         nlist = new ArrayList<>();
@@ -66,11 +68,21 @@ public class ComputerNoticeActivity extends BaseActivity {
                     }
                 });
 
+        FirebaseUser fAuthCurrentUser = fAuth.getCurrentUser();
+
+        String uId;
+//       assert fAuthCurrentUser != null;
+//        uId = fAuthCurrentUser.getUid();
+        if ( fAuthCurrentUser != null) {
+            create.isClickable();
+        }
 
 
 
 
-        create = findViewById(R.id.fbutton);
+
+
+
 
                 create.setOnClickListener(new View.OnClickListener() {
                     @Override

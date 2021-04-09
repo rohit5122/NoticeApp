@@ -19,7 +19,6 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 public class UserActivity extends AppCompatActivity {
 
     TextView uname,udep,uemail,unum;
-  //  EditText mEmail, mPassword;
     FirebaseAuth fAuth;
     FirebaseFirestore fstore;
 
@@ -27,7 +26,7 @@ public class UserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
-    //    setContentView(R.layout.activity_login);
+
 
         uname = findViewById(R.id.tvuname);
         udep = findViewById(R.id.tvudep);
@@ -35,9 +34,6 @@ public class UserActivity extends AppCompatActivity {
         unum = findViewById(R.id.tvunum);
         fAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
-
-      //  mEmail = findViewById(R.id.txtuserid);
-        //mPassword = findViewById(R.id.txtpassword);
         FirebaseUser fAuthCurrentUser = fAuth.getCurrentUser();
 
         String uId;
@@ -45,10 +41,6 @@ public class UserActivity extends AppCompatActivity {
         assert fAuthCurrentUser != null;
         uId = fAuthCurrentUser.getUid();
 
-       // String email = mEmail.getText().toString().trim();
-       // String password = mPassword.getText().toString().trim();
-
-        if (uId != null) {
             DocumentReference documentReference = fstore.collection("Users").document(uId);
             documentReference.addSnapshotListener(UserActivity.this, new EventListener<DocumentSnapshot>() {
                 @Override
@@ -63,22 +55,5 @@ public class UserActivity extends AppCompatActivity {
                     unum.setText(value.getString("MobileNo"));
                 }
             });
-
-
-        }
-        else{
-            uname.setVisibility(View.GONE);
-            udep.setVisibility(View.GONE);
-            uemail.setVisibility(View.GONE);
-            unum.setVisibility(View.GONE);
-
-        }
-
-
-
-
-
-
-
     }
 }

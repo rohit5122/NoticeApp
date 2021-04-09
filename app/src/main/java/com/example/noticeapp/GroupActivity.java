@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -31,15 +30,15 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class GroupActivity extends AppCompatActivity {
 
-    TextView tvdep, tvlib, tvgtu, tvgen,uname,udep;
+    TextView tvdep, tvlib, tvgtu, tvgen;
     ProgressDialog progressDialog;
     NavigationView nav;
     ActionBarDrawerToggle toggle;
     DrawerLayout drawerLayout;
     FirebaseAuth fAuth;
     FirebaseFirestore fstore;
+    FirebaseUser fuser;
     ImageView ivdep;
-
 
 
     @Override
@@ -53,24 +52,27 @@ public class GroupActivity extends AppCompatActivity {
 
 
 
-
-
-
         tvdep = findViewById(R.id.tvdep);
         ivdep = findViewById(R.id.ivdep);
         tvlib = findViewById(R.id.tvlib);
         tvgtu = findViewById(R.id.tvgtu);
         tvgen = findViewById(R.id.tvgen);
 
+        TextView uName = findViewById(R.id.uname);
+        TextView uDep =  findViewById(R.id.udep);
 
-        uname = findViewById(R.id.uname);
-        udep = findViewById(R.id.udep);
+       // uDep.setText("Compter");
+
+
+       // uname = findViewById(R.id.uname);
+        //udep = findViewById(R.id.udep);
         fAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
+        fuser = fAuth.getCurrentUser();
       //  FirebaseUser fAuthCurrentUser = fAuth.getCurrentUser();
 
-        String userId;
-        userId = fAuth.getCurrentUser().getUid();
+        //String userId;
+        //userId = fAuth.getCurrentUser().getUid();
       // uId = fAuthCurrentUser.getUid();
 
        /*     DocumentReference documentReference = fstore.collection("Users").document(userId);
@@ -93,6 +95,10 @@ public class GroupActivity extends AppCompatActivity {
         toggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //NavigationView navigationView = (NavigationView) findViewById(R.id.navmenu);
+
+     //   updateNavHolder();
 
 
 
@@ -214,4 +220,28 @@ public class GroupActivity extends AppCompatActivity {
         }
       // return super.onOptionsItemSelected(item);
     }
+
+ /*   public void updateNavHolder(){
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navmenu);
+        View headerView = navigationView.getHeaderView(0);
+        TextView uName = headerView.findViewById(R.id.uname);
+        TextView uDep = headerView.findViewById(R.id.udep);
+
+        uName.setText(fuser.getDisplayName());
+
+        DocumentReference documentReference = fstore.collection("Users").document(String.valueOf(fuser));
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                Toast.makeText(GroupActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+                uName.setText(value.getString("Fname"));
+                uDep.setText(value.getString("Department"));
+
+            }
+        });
+
+
+    } */
+
 }
